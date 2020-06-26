@@ -1,12 +1,12 @@
 ## About the app
 
-_This fullstack web app is a portfolio piece challenge for myself. </br>
+This fullstack web app is a portfolio piece challenge for myself. </br>
 Create anything in 48 hrs over the weekend. </br>
-This is what I made. _</br>
+This is what I made. :metal: </br>
 
-### **IHaveACarrot.com ** </br>
+###**IHaveACarrot.com** </br>
 
-### **See app live here > [Click Me!](https://IHaveACarrot.com) ** </br>
+### See app live here > [Click Me!](https://IHaveACarrot.com) \*\* </br>
 
 #### Stuff used to create this.
 
