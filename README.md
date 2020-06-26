@@ -1,4 +1,4 @@
-## About the app
+## About The App
 
 _This fullstack web app is a portfolio piece challenge for myself._ </br>
 _Create anything in 48 hrs over the weekend._ </br>
