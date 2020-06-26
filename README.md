@@ -6,7 +6,7 @@ _This is what I made._ :metal: </br>
 
 ### See app live here :arrow_right: :arrow_right: [IHaveACarrot.com](https://IHaveACarrot.com) </br>
 
-### ...Or watch youtube demo :arrow_right: :arrow_right: [Demo](https://IHaveACarrot.com) </br>
+### ...Or watch YouTube demo :arrow_right: :arrow_right: [Demo on YT](https://IHaveACarrot.com) </br>
 
 #### Stuff used to create this.
 
