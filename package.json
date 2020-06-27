@@ -7,9 +7,14 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
+<<<<<<< HEAD
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.9.20",
+=======
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4",
+>>>>>>> b20860f1f443d8424dd356d61e9a89581d540bb9
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1"
