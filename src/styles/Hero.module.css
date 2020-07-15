@@ -1,0 +1,8 @@
+.hero {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.445), rgba(0, 0, 0, 0.226)),
+    url('../assets/cheerful-women-cooking-together-in-kitchen-3772534.jpg');
+  height: 90vh;
+  width: 100vw;
+  background-size: cover;
+  background-position: center;
+}
