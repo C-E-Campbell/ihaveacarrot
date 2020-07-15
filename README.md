@@ -10,14 +10,14 @@ _This is what I made._ :metal: </br>
 
 #### Stuff used to create this.
 
-- Chakra UI
 - React
 - Redux
 - Express
 - Node
-- MongoDb
-- Passport.js
+- Firebase Cloud Firestore
+- Firebase Cloud Storage
 - Socket.io
-- Recipe Puppy Api
+- Redis
+- Spoonacular Api
 
 ## [My Portfolio](https://charlescampbell.dev)

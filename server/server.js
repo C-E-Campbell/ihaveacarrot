@@ -1,51 +1,27 @@
 const express = require('express');
-const mongoose = require('mongoose');
-const Recipe = require('./models/recipe.js');
+
 const app = express();
-require('dotenv').config();
+require('dotenv').config({ path: '../.env' });
 const { PORT, CONN_STRING } = process.env;
 app.use(express.json());
-mongoose
-  .connect(
-    `${CONN_STRING}`,
-    {
-      useNewUrlParser: true,
-    },
-    () => {
-      console.log('Connected');
-    }
-  )
-  .catch((err) => {
-    console.log(err);
-  });
+var admin = require('firebase-admin');
 
-const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function () {
-  console.log('Connecteddddd');
+var serviceAccount = require('../ihaveacarrot-1f5e2-firebase-adminsdk-pc9ms-3b1d52a3a9.json');
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: 'https://ihaveacarrot-1f5e2.firebaseio.com',
 });
 
-app.get('/', (req, res) => {
-  res.send('Home');
-});
+const db = admin.firestore();
+app.post('/addusers', (req, res) => {
+  const { name, born, first, last } = req.body;
+  const docRef = db.collection('users').doc(`${name}`);
 
-app.post('/recipe', (req, res) => {
-  const { title, description } = req.body;
-  const recipe = new Recipe({
-    title,
-    description,
+  docRef.set({
+    first: `${first}`,
+    last: `${last}`,
+    born: `${born}`,
   });
-
-  recipe
-    .save()
-    .then((data) => {
-      res.json(data);
-      res.status(200);
-    })
-    .catch((err) => {
-      res.send('idk');
-      res.status(500);
-    });
 });
 
 app.listen(PORT, () => {
