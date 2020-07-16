@@ -67,8 +67,10 @@ export default function Home() {
       <div className="container">
         <div className="row">
           <div className={styles.info}>
-            <h3>How It Works:</h3>
-            <h4>
+            <h3 data-aos="fade-in" data-aos-once="true">
+              How It Works:
+            </h3>
+            <h4 data-aos="fade-in" data-aos-once="true">
               So you wanna make some grub but you only have some random items in
               the fridge? Type in your ingredients (separated by a comma: apple,
               banana, frog) and lets see what we can find for you.
@@ -79,11 +81,15 @@ export default function Home() {
           <div className="col s3 "></div>
           <div className="col s6 center-align">
             <input
+              data-aos="fade-in"
+              data-aos-once="true"
               value={ingredients}
               onChange={(e) => handleChange(e)}
-              placeholder="search recipes"
+              placeholder='try searching "carrot"'
             />
             <a
+              data-aos="fade-in"
+              data-aos-once="true"
               onClick={() => handleClick()}
               className="waves-effect waves-light btn"
             >

@@ -3,7 +3,7 @@ import React from 'react';
 export default function Recipe(props) {
   return (
     <div class="col s1 m4">
-      <div class="card">
+      <div class="card" style={{ marginBottom: '50px', minHeight: '500px' }}>
         <div class="card-image">
           <img src={props.image} alt="food" />
 

@@ -9,11 +9,8 @@ export default function Hero() {
           <div className={styles.hero_text}>
             <h1 className={styles.hero_h1}>iHaveACarrot</h1>
             <h1 className={styles.hero_sub_h1}>
-              for those moments when you only have a carrot
+              For those moments when you only have a carrot
             </h1>
-            <a class="waves-effect waves-teal btn-flat white-text">
-              Search Recipes
-            </a>
           </div>
         </div>
       </div>
