@@ -6,7 +6,7 @@ export default function Navigation() {
   return (
     <nav className="teal lighten-2">
       <div className="nav-wrapper container">
-        <a href="/" className="brand-logo">
+        <a href="#modal1" className="brand-logo">
           <img src={Logo} alt="iHaveACarrot" id={styles.logo} />
         </a>
 
@@ -28,7 +28,10 @@ export default function Navigation() {
             </a>
           </li>
           <li>
-            <a className="waves-effect waves-light btn #fb8c00 orange darken-1">
+            <a
+              href="#modal1"
+              className="waves-effect waves-light btn #fb8c00 orange darken-1"
+            >
               Login
             </a>
           </li>
