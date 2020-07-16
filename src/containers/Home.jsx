@@ -87,7 +87,7 @@ export default function Home() {
               onChange={(e) => handleChange(e)}
               placeholder='try searching "carrot"'
             />
-            <a
+            <button
               data-aos="fade-in"
               data-aos-once="true"
               onClick={() => handleClick()}
@@ -95,7 +95,7 @@ export default function Home() {
             >
               Search
               <i className="material-icons search"></i>
-            </a>
+            </button>
           </div>
           <div className="col s3 "></div>
         </div>
