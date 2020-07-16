@@ -5,4 +5,23 @@
   width: 100vw;
   background-size: cover;
   background-position: center;
+  position: relative;
+}
+.hero_text {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.336);
+  padding: 3rem;
+  border-radius: 4px;
+}
+.hero_h1 {
+  color: #fff;
+  font-size: 3rem;
+}
+
+.hero_sub_h1 {
+  color: #fff;
+  font-size: 2rem;
 }

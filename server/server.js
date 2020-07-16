@@ -4,6 +4,7 @@ const app = express();
 require('dotenv').config({ path: '../.env' });
 const { PORT, CONN_STRING } = process.env;
 app.use(express.json());
+
 var admin = require('firebase-admin');
 
 var serviceAccount = require('../ihaveacarrot-1f5e2-firebase-adminsdk-pc9ms-3b1d52a3a9.json');
