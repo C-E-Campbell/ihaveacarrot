@@ -21,7 +21,7 @@ export default function Navigation() {
           </li>
           <li>
             <a
-              class="waves-effect waves-light btn modal-trigger  #fb8c00 orange darken-1"
+              className="waves-effect waves-light btn modal-trigger  #fb8c00 orange darken-1"
               href="#modal1"
             >
               Sign up
@@ -33,17 +33,6 @@ export default function Navigation() {
             </a>
           </li>
         </ul>
-      </div>
-      <div id="modal1" class="modal">
-        <div class="modal-content">
-          <h4>Modal Header</h4>
-          <p>A bunch of text</p>
-        </div>
-        <div class="modal-footer">
-          <a href="#!" class="modal-close waves-effect waves-green btn-flat">
-            Agree
-          </a>
-        </div>
       </div>
     </nav>
   );
