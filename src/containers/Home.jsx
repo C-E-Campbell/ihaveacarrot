@@ -11,10 +11,16 @@ export default function Home() {
   };
 
   const handleClick = async () => {
+    const formatIngredients = ingredients
+      .split(',')
+      .map((ingredient) => ingredient.trim())
+      .join(',')
+      .replace(',', '%252');
+    console.log(formatIngredients);
     setIngredients('');
 
     fetch(
-      'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=5&ranking=1&ignorePantry=false&ingredients=apples%252Cflour%252Csugar',
+      `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?number=6&ranking=1&ignorePantry=false&ingredients=${formatIngredients}`,
       {
         method: 'GET',
         headers: {
@@ -69,7 +75,7 @@ export default function Home() {
             </h4>
           </div>
         </div>
-        <div className="row">
+        <div className="row" style={{ marginBottom: '100px' }}>
           <div className="col s3 "></div>
           <div className="col s6 center-align">
             <input
@@ -88,9 +94,9 @@ export default function Home() {
           <div className="col s3 "></div>
         </div>
       </div>
-      <div className={`container`}>
+      <div className="container">
         <div className="row">
-          <div className="col s6">{recipesArr}</div>
+          <div className="col">{recipesArr}</div>
         </div>
       </div>
     </div>
