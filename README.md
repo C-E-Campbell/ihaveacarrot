@@ -14,8 +14,7 @@ _This is what I made._ :metal: </br>
 - Redux
 - Express
 - Node
-- Firebase Cloud Firestore
-- Firebase Cloud Storage
+- MongoDb
 - Socket.io
 - Redis
 - Spoonacular Api
