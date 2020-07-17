@@ -3,11 +3,11 @@ var router = express.Router();
 
 // define the home page route
 router.get('/login', function (req, res) {
-  res.send('Birds home page');
+  res.send('logged in');
 });
 // define the about route
 router.get('/register', function (req, res) {
-  res.send('About birds');
+  res.send('registerd');
 });
 
 module.exports = router;
