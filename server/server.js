@@ -1,7 +1,7 @@
 require('dotenv').config({ path: '../.env' });
-const MongoClient = require('mongodb').MongoClient;
+const mongoose = require('mongoose');
 const express = require('express');
-const Auth = require('./controllers/AuthCTRL');
+const Auth = require('./routes/AuthRouter');
 const Recipes = require('./controllers/RecipesCTRL');
 const app = express();
 const morgan = require('morgan');
@@ -13,16 +13,16 @@ app.use(express.json());
 app.use('/api/v1/auth', Auth);
 app.use('/api/v1/recipes', Recipes);
 
-const client = new MongoClient(mongoURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-
-client.connect((err) => {
-  const collection = client.db('iHaveACarrot').collection('Users');
-
-  client.close();
-});
+mongoose
+  .connect(mongoURI, {
+    useNewUrlParser: true,
+    useCreateIndex: true,
+    useFindAndModify: false,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    console.log('db Connected');
+  });
 
 app.listen(PORT, () => {
   console.log(`Open on port ${PORT}`);

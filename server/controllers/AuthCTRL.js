@@ -1,17 +1,24 @@
-var express = require('express');
-var router = express.Router();
+const Users = require('../models/user');
 
-// define the home page route
-router.post('/login', function (req, res) {
-  const { email, user, password } = req.body;
-  console.log(req.body);
-  res.send('logged in');
-});
-// define the about route
-router.post('/register', function (req, res) {
-  const { email, user, password } = req.body;
-  console.log(req.body);
-  res.send('registered');
-});
+module.exports = {
+  login: async function (req, res, next) {
+    const { email, user, password } = req.body;
 
-module.exports = router;
+    const data = await Users.find();
+    console.log(data);
+    res.send('logged in');
+  },
+  register: async function (req, res, next) {
+    const { email, user, password } = req.body;
+
+    const newUser = new Users({
+      user,
+      email,
+      password,
+    });
+
+    await newUser.save();
+
+    res.send('registered');
+  },
+};
