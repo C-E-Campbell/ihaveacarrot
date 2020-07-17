@@ -70,7 +70,11 @@ export default function Home() {
             <h3 data-aos="fade-in" data-aos-once="true">
               How It Works:
             </h3>
-            <h4 data-aos="fade-in" data-aos-once="true">
+            <h4
+              className={styles.instructions}
+              data-aos="fade-in"
+              data-aos-once="true"
+            >
               So you wanna make some grub but you only have some random items in
               the fridge? Type in your ingredients (separated by a comma: apple,
               banana, frog) and lets see what we can find for you.
@@ -79,7 +83,7 @@ export default function Home() {
         </div>
         <div className="row" style={{ marginBottom: '100px' }}>
           <div className="col s3 "></div>
-          <div className="col s6 center-align">
+          <div className="col s12 m6 center-align">
             <input
               data-aos="fade-in"
               data-aos-once="true"

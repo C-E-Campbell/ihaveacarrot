@@ -27,3 +27,11 @@
   font-size: 2rem;
   font-family: 'Fredericka the Great', cursive;
 }
+
+@media (min-width: '500px') {
+  .hero_h1 {
+    color: #fff;
+    font-size: 3rem;
+    font-family: 'Fredericka the Great', cursive;
+  }
+}

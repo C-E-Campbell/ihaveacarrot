@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Recipe(props) {
   return (
-    <div className="col s1 m4">
+    <div className="col s12 m4">
       <div
         className="card"
         style={{ marginBottom: '50px', minHeight: '500px' }}
