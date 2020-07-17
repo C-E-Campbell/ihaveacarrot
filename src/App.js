@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import styles from './styles/App.module.css';
-
+import MyRecipes from './containers/MyRecipes';
 import Navigation from './components/Navigation.jsx';
 import Home from './containers/Home.jsx';
 
@@ -15,7 +15,9 @@ export default function App() {
           <Route exact path="/">
             <Home />
           </Route>
-          <Route path="/about"></Route>
+          <Route path="/recipes">
+            <MyRecipes />
+          </Route>
           <Route path="/dashboard"></Route>
         </Switch>
       </div>

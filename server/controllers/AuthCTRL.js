@@ -6,7 +6,7 @@ const jwt = require('jwt-simple');
 
 function tokenGen(result) {
   const timestamp = new Date().getTime();
-  return jwt.encode({ sub: result.id, iat: timestamp }, secret);
+  return jwt.encode({ sub: result._id, iat: timestamp }, secret);
 }
 
 module.exports = {
@@ -37,7 +37,7 @@ module.exports = {
 
     // if they dont exist - hash pass and save the user
     if (!checkEmail && !checkuser) {
-      bcrypt.hash(password, 12, function (err, hash) {
+      bcrypt.hash(password, 12, async function (err, hash) {
         const newUser = new Users({
           user,
           email,
@@ -45,11 +45,15 @@ module.exports = {
         });
 
         newUser.save();
+        const result = await Users.findOne({ email });
+        const token = tokenGen(result);
+        return res.status(200).json({ success: true, token });
       });
-
-      return res.status(200).json({ success: true });
     } else {
       return res.status(422).json({ success: false });
     }
+  },
+  loginn: function (req, res, next) {
+    res.send('hell');
   },
 };
