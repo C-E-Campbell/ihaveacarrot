@@ -1,5 +1,14 @@
+require('dotenv').config({ path: '../../.env' });
 const Users = require('../models/user');
+const { secret } = process.env;
 const bcrypt = require('bcrypt');
+const jwt = require('jwt-simple');
+
+function tokenGen(result) {
+  const timestamp = new Date().getTime();
+  return jwt.encode({ sub: result.id, iat: timestamp }, secret);
+}
+
 module.exports = {
   login: async function (req, res, next) {
     const { email, user, password } = req.body;
@@ -7,15 +16,15 @@ module.exports = {
     const result = await Users.findOne({ email });
 
     if (!result) {
-      return res.status(404).json('Create an account');
+      return res.status(404).json({ success: false });
     }
 
     bcrypt.compare(password, result.password, function (err, result) {
       if (result) {
-        // token?
-        return res.json(result).status(200);
+        const token = tokenGen(result);
+        return res.json({ success: true, token }).status(200);
       } else {
-        return res.status(666).json('Invalid username or pass');
+        return res.status(666).json({ success: false });
       }
     });
   },
@@ -38,11 +47,9 @@ module.exports = {
         newUser.save();
       });
 
-      return res.status(200).json('Account Created');
+      return res.status(200).json({ success: true });
     } else {
-      return res
-        .status(422)
-        .json('Email or User Name in use. Already have an account?');
+      return res.status(422).json({ success: false });
     }
   },
 };
