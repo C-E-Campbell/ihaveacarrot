@@ -7,12 +7,10 @@ module.exports = {
     const result = await Users.findOne({ email });
 
     if (!result) {
-      res.status(404).json('Create an account');
-      return;
+      return res.status(404).json('Create an account');
     }
 
-    res.json({ result }).status(200);
-    return;
+    return res.json({ result }).status(200);
   },
   register: async function (req, res, next) {
     const { email, user, password } = req.body;
@@ -21,15 +19,16 @@ module.exports = {
       email,
       password,
     });
+
+    // user names and emails are unique in the db - checking them here
     const checkEmail = await Users.findOne({ email });
     const checkuser = await Users.findOne({ user });
 
     if (!checkEmail && !checkuser) {
       newUser.save();
-      res.status(200).json('Account Created');
-      return;
+      return res.status(200).json('Account Created');
     } else {
-      res.status(409).json('Already have an account?');
+      return res.status(409).json('Already have an account?');
     }
   },
 };
