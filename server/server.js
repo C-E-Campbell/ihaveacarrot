@@ -11,9 +11,10 @@ const { PORT, mongoURI } = process.env;
 app.use(morgan('tiny'));
 app.use(express.json());
 
+// Mount Routers
 app.use('/api/v1/auth', Auth);
-// app.use('/api/v1/recipes', Recipes);
-// app.use('/api/v1/users', Users);
+app.use('/api/v1/recipes', Recipes);
+app.use('/api/v1/users', Users);
 
 mongoose
   .connect(mongoURI, {
