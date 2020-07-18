@@ -10,7 +10,6 @@ export default function App() {
     <Router>
       <div className={styles.container}>
         <Navigation />
-
         <Switch>
           <Route exact path="/">
             <Home />
@@ -18,7 +17,6 @@ export default function App() {
           <Route path="/recipes">
             <MyRecipes />
           </Route>
-          <Route path="/dashboard"></Route>
         </Switch>
       </div>
     </Router>
