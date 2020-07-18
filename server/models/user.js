@@ -19,6 +19,8 @@ const userSchema = new Schema({
     minlength: 4,
   },
   password: { type: String, trim: true },
+  passwordConfirm: { type: String, trim: true },
+  photo: { type: String },
 });
 
 // Create the model class

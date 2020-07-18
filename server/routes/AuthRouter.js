@@ -9,6 +9,7 @@ const requireAuth = passport.authenticate('local', { session: false });
 authRouter.use('/login', requireAuth, (req, res, next) => {
   next();
 });
+
 authRouter.route('/login').post(login);
 authRouter.route('/register').post(register);
 

@@ -1,16 +1,34 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import Logo from '../assets/logo.png';
 import styles from '../styles/Navigation.module.css';
-export default function Navigation() {
-  const [auth, setAuth] = useState(false);
+export default function Navigation(props) {
   return (
     <nav className="teal lighten-2">
       <div className="nav-wrapper container">
-        <a href="#modal1" className="brand-logo">
+        <Link to="/" className="brand-logo">
           <img src={Logo} alt="iHaveACarrot" id={styles.logo} />
-        </a>
-        {auth ? null : (
+        </Link>
+        {props.isLogged ? (
+          <ul id="nav-mobile" className="right hide-on-med-and-down">
+            <li>
+              <Link
+                to="/myrecipes"
+                className="waves-effect waves-light btn #fb8c00 orange darken-1"
+              >
+                My Recipes
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/"
+                className="waves-effect waves-light btn #fb8c00 orange darken-1"
+              >
+                Sign Out
+              </Link>
+            </li>
+          </ul>
+        ) : (
           <ul id="nav-mobile" className="right hide-on-med-and-down">
             <li>
               <Link
@@ -34,14 +52,6 @@ export default function Navigation() {
                 className="waves-effect waves-light btn #fb8c00 orange darken-1"
               >
                 Login
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/"
-                className="waves-effect waves-light btn #fb8c00 orange darken-1"
-              >
-                Sign Out
               </Link>
             </li>
           </ul>
