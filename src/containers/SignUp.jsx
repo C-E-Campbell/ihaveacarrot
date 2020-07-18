@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
+import styles from '../styles/signUp.module.css';
 function SignUp(props) {
   const [email, setEmail] = useState('');
   const [user, setUsername] = useState('');
@@ -7,7 +8,7 @@ function SignUp(props) {
 
   return (
     <div className="container">
-      <h2>Sign Up</h2>
+      <h2 className={styles.h2}>Sign Up</h2>
       <form
         onSubmit={(e) => {
           e.preventDefault();

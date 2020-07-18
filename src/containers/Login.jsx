@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
+import styles from '../styles/Login.module.css';
 function Login(props) {
   const [email, setEmail] = useState('');
   const [user, setUsername] = useState('');
@@ -7,7 +8,7 @@ function Login(props) {
 
   return (
     <div className="container">
-      <h2>Login</h2>
+      <h2 className={styles.h2}>Login</h2>
       <form
         onSubmit={(e) => {
           e.preventDefault();
