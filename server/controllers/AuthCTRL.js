@@ -11,22 +11,8 @@ function tokenGen(result) {
 
 module.exports = {
   login: async function (req, res, next) {
-    const { email, user, password } = req.body;
-
-    const result = await Users.findOne({ email });
-
-    if (!result) {
-      return res.status(404).json({ success: false });
-    }
-
-    bcrypt.compare(password, result.password, function (err, result) {
-      if (result) {
-        const token = tokenGen(result);
-        return res.json({ success: true, token }).status(200);
-      } else {
-        return res.status(666).json({ success: false });
-      }
-    });
+    const token = tokenGen(req.user);
+    return res.status(200).json({ success: true, token });
   },
   register: async function (req, res, next) {
     const { email, user, password } = req.body;
@@ -44,10 +30,12 @@ module.exports = {
           password: hash,
         });
 
-        newUser.save();
+        await newUser.save();
         const result = await Users.findOne({ email });
-        const token = tokenGen(result);
-        return res.status(200).json({ success: true, token });
+        if (result) {
+          const token = tokenGen(result);
+          return res.status(200).json({ success: true, token });
+        }
       });
     } else {
       return res.status(422).json({ success: false });
