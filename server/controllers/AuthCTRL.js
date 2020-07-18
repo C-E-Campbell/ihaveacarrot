@@ -41,7 +41,4 @@ module.exports = {
       return res.status(422).json({ success: false });
     }
   },
-  loginn: function (req, res, next) {
-    res.send('hell');
-  },
 };
