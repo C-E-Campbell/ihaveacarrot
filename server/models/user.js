@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const validator = require('validator');
 
 // Define the model
 
@@ -10,16 +11,22 @@ const userSchema = new Schema({
     lowercase: true,
     minlength: 4,
     trim: true,
+    required: [true, 'Please tell us your name!'],
   },
   email: {
     type: String,
     unique: true,
     lowercase: true,
     trim: true,
-    minlength: 4,
+    validate: [validator.isEmail, 'Please provide a valid email'],
+    required: [true, 'Please provide your email!'],
   },
-  password: { type: String, trim: true },
-  passwordConfirm: { type: String, trim: true },
+  password: {
+    type: String,
+    trim: true,
+    required: [true, 'Please provide a password'],
+    minlength: 5,
+  },
   photo: { type: String },
 });
 

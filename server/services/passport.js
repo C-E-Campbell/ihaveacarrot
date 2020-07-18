@@ -40,7 +40,7 @@ const localLogin = new LocalStrategy(
         return done(null, false, { message: 'Incorrect username.' });
       }
     });
-    console.log(data);
+
     bcrypt.compare(password, data.password, function (err, result) {
       if (result) {
         return done(null, data);

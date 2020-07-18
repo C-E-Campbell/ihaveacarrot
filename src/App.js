@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  withRouter,
+} from 'react-router-dom';
+import axios from 'axios';
 import styles from './styles/App.module.css';
 import MyRecipes from './containers/MyRecipes';
 import Navigation from './components/Navigation.jsx';
@@ -7,13 +13,35 @@ import Home from './containers/Home.jsx';
 import SignUp from './containers/SignUp';
 import Login from './containers/Login';
 
-export default function App() {
+function App(props) {
   const [token, setToken] = useState('');
+
+  const signUp = async (email, user, password) => {
+    const result = await axios.post('/iHAC/v1/auth/register', {
+      email,
+      user,
+      password,
+    });
+    setToken(result.data.token);
+  };
+
+  const login = async (email, user, password) => {
+    const result = await axios.post('/iHAC/v1/auth/login', {
+      email,
+      user,
+      password,
+    });
+    setToken(result.data.token);
+  };
+
+  const signOut = async () => {
+    setToken('');
+  };
 
   return (
     <Router>
       <div className={styles.container}>
-        <Navigation />
+        <Navigation signOut={signOut} isLogged={token} />
         <Switch>
           <Route exact path="/">
             <Home />
@@ -22,13 +50,15 @@ export default function App() {
             <MyRecipes />
           </Route>
           <Route exact path="/signup">
-            <SignUp />
+            <SignUp signUp={signUp} />
           </Route>
           <Route exact path="/login">
-            <Login />
+            <Login login={login} />
           </Route>
         </Switch>
       </div>
     </Router>
   );
 }
+
+export default withRouter(App);

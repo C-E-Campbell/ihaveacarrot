@@ -10,20 +10,18 @@ function tokenGen(result) {
 }
 
 module.exports = {
-  login: async function (req, res, next) {
+  login: async (req, res, next) => {
     const token = tokenGen(req.user);
     return res.status(200).json({ success: true, token });
   },
-  register: async function (req, res, next) {
+  register: async (req, res, next) => {
     const { email, user, password } = req.body;
 
-    // user names and emails are unique in the db - checking them here
     const checkEmail = await Users.findOne({ email });
     const checkuser = await Users.findOne({ user });
 
-    // if they dont exist - hash pass and save the user
     if (!checkEmail && !checkuser) {
-      bcrypt.hash(password, 12, async function (err, hash) {
+      bcrypt.hash(password, 12, async (err, hash) => {
         const newUser = new Users({
           user,
           email,

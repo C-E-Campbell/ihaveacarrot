@@ -23,6 +23,9 @@ export default function Navigation(props) {
               <Link
                 to="/"
                 className="waves-effect waves-light btn #fb8c00 orange darken-1"
+                onClick={() => {
+                  props.signOut();
+                }}
               >
                 Sign Out
               </Link>
