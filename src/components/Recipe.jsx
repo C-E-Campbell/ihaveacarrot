@@ -17,6 +17,7 @@ function Recipe(props) {
           >
             <i
               onClick={(e) => {
+                e.stopPropagation();
                 e.preventDefault();
                 props.addFavorite(props.id);
               }}

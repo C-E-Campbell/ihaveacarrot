@@ -50,10 +50,14 @@ function App(props) {
         <Navigation signOut={signOut} isLogged={token} />
         <Switch>
           <Route exact path="/">
-            <Home searchTermFN={setSearch} searchedRecipes={searchedRecipes} />
+            <Home
+              token={token}
+              searchTermFN={setSearch}
+              searchedRecipes={searchedRecipes}
+            />
           </Route>
-          <Route exact path="/recipes">
-            <MyRecipes />
+          <Route exact path="/myrecipes">
+            <MyRecipes token={token} />
           </Route>
           <Route exact path="/signup">
             <SignUp signUp={signUp} />

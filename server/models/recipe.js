@@ -1,10 +1,9 @@
 const mongoose = require('mongoose');
+const { Router } = require('express');
 
 const RecipeSchema = mongoose.Schema({
-  title: {
-    type: String,
-  },
-  description: String,
+  recipeId: String,
+  userId: String,
 });
 
 const Recipe = mongoose.model('Recipe', RecipeSchema);
