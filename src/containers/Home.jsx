@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import { withRouter } from 'react-router-dom';
 import Hero from '../components/Hero';
 import Recipe from '../components/Recipe';
 import styles from '../styles/Home.module.css';
-export default function Home() {
+export default function Home(props) {
   const [ingredients, setIngredients] = useState('');
   const [recipes, setRecipes] = useState([]);
 
@@ -10,13 +11,13 @@ export default function Home() {
     setIngredients(e.target.value);
   };
 
-  const handleClick = async () => {
-    const formatIngredients = ingredients
+  const fetchRecipes = (food) => {
+    const formatIngredients = food
       .split(',')
       .map((ingredient) => ingredient.trim())
       .join(',')
       .replace(',', '%252');
-    console.log(formatIngredients);
+    props.searchTermFN(food);
     setIngredients('');
 
     fetch(
@@ -32,13 +33,24 @@ export default function Home() {
       }
     )
       .then((response) => response.json())
-      .then((data) => setRecipes(data))
+      .then((data) => {
+        props.searchTermFN(data);
+        setRecipes(data);
+      })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  const recipesArr = recipes.map(
+  const handleClick = async (food) => {
+    fetchRecipes(food);
+  };
+
+  const addFavorite = (id) => {
+    console.log(id);
+  };
+
+  const recipeArr = recipes.map(
     ({
       id,
       title,
@@ -49,6 +61,7 @@ export default function Home() {
       missedIngredientCount,
     }) => (
       <Recipe
+        updateSearch={props.setSearchFN}
         key={id}
         id={id}
         title={title}
@@ -57,6 +70,7 @@ export default function Home() {
         missed={missedIngredientCount}
         missedIngrediants={missedIngredients}
         usedIngredients={usedIngredients}
+        addFavorite={addFavorite}
       />
     )
   );
@@ -94,7 +108,7 @@ export default function Home() {
             <button
               data-aos="fade-in"
               data-aos-once="true"
-              onClick={() => handleClick()}
+              onClick={() => handleClick(ingredients)}
               className="waves-effect waves-light btn"
             >
               Search
@@ -106,7 +120,7 @@ export default function Home() {
       </div>
       <div className="container">
         <div className="row">
-          <div className="col">{recipesArr}</div>
+          <div className="col">{recipeArr}</div>
         </div>
       </div>
     </div>

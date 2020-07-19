@@ -1,21 +1,30 @@
 import React from 'react';
-
-export default function Recipe(props) {
+import { withRouter } from 'react-router-dom';
+function Recipe(props) {
   return (
     <div className="col s12 m4">
       <div
+        onClick={() => props.history.push(`/recipe/${props.id}`)}
         className="card"
         style={{ marginBottom: '50px', minHeight: '500px' }}
       >
         <div className="card-image">
           <img src={props.image} alt="food" />
 
-          <a
+          <button
             href="/nowhere"
             className="btn-floating halfway-fab waves-effect waves-light red"
           >
-            <i className="material-icons">favorite</i>
-          </a>
+            <i
+              onClick={(e) => {
+                e.preventDefault();
+                props.addFavorite(props.id);
+              }}
+              className="material-icons"
+            >
+              favorite
+            </i>
+          </button>
         </div>
         <div className="card-content">
           <span className="card-title">{props.title}</span>
@@ -24,3 +33,5 @@ export default function Recipe(props) {
     </div>
   );
 }
+
+export default withRouter(Recipe);
