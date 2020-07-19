@@ -7,7 +7,7 @@ const Users = require('./routes/UsersRouter');
 const app = express();
 const morgan = require('morgan');
 const { PORT, mongoURI } = process.env;
-
+app.use(express.static(`${__dirname}/../build`));
 app.use(morgan('tiny'));
 app.use(express.json());
 
@@ -26,6 +26,11 @@ mongoose
   .then(() => {
     console.log('db Connected');
   });
+const path = require('path');
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+});
 
 app.listen(PORT, () => {
   console.log(`Open on port ${PORT}`);
