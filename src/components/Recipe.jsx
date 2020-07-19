@@ -10,22 +10,23 @@ function Recipe(props) {
       >
         <div className="card-image">
           <img src={props.image} alt="food" />
-
-          <button
-            href="/nowhere"
-            className="btn-floating halfway-fab waves-effect waves-light red"
-          >
-            <i
-              onClick={(e) => {
-                e.stopPropagation();
-                e.preventDefault();
-                props.addFavorite(props.id);
-              }}
-              className="material-icons"
+          {props.match.path === '/myrecipes' ? null : (
+            <button
+              href="/nowhere"
+              className="btn-floating halfway-fab waves-effect waves-light red"
             >
-              favorite
-            </i>
-          </button>
+              <i
+                onClick={(e) => {
+                  e.stopPropagation();
+                  e.preventDefault();
+                  props.addFavorite(props.id, props.title, props.image);
+                }}
+                className="material-icons"
+              >
+                favorite
+              </i>
+            </button>
+          )}
         </div>
         <div className="card-content">
           <span className="card-title">{props.title}</span>

@@ -46,9 +46,11 @@ export default function Home(props) {
     fetchRecipes(food);
   };
 
-  const addFavorite = (id) => {
+  const addFavorite = (id, title, image) => {
     const data = {
       recipeId: id,
+      image,
+      title,
     };
     fetch('/iHAC/v1/recipes/saveRecipe', {
       method: 'POST', // or 'PUT'
