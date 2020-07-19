@@ -22,6 +22,49 @@ function ViewRecipe(props) {
       .catch((error) => console.log(error.message));
   }, []);
 
-  return <div>Hell</div>;
+  const addFavorite = (id, title, image) => {
+    const data = {
+      recipeId: id,
+      image,
+      title,
+    };
+    if (props.token !== '') {
+      fetch('/iHAC/v1/recipes/saveRecipe', {
+        method: 'POST', // or 'PUT'
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `${props.token}`,
+        },
+        body: JSON.stringify(data),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Success:', data);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    } else {
+      alert('Must sign up or login');
+    }
+  };
+
+  return (
+    <div className="container">
+      <h2>{data.title}</h2>
+      <button
+        onClick={addFavorite}
+        className="waves-effect waves-light btn #fb8c00 orange darken-1"
+      >
+        Save Recipe
+      </button>
+      <h6>{`Serving Size: ${data.servings}`}</h6>
+      <h6>{`Cooking Time: ${data.cookingMinutes}`}</h6>
+      <img src={data.image} alt="food" />
+      <ul></ul>
+      <p>{data.summary}</p>
+      <p>{data.instructions}</p>
+    </div>
+  );
 }
 export default withRouter(ViewRecipe);

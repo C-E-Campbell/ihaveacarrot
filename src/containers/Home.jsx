@@ -52,21 +52,25 @@ export default function Home(props) {
       image,
       title,
     };
-    fetch('/iHAC/v1/recipes/saveRecipe', {
-      method: 'POST', // or 'PUT'
-      headers: {
-        'Content-Type': 'application/json',
-        authorization: `${props.token}`,
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log('Success:', data);
+    if (props.token !== '') {
+      fetch('/iHAC/v1/recipes/saveRecipe', {
+        method: 'POST', // or 'PUT'
+        headers: {
+          'Content-Type': 'application/json',
+          authorization: `${props.token}`,
+        },
+        body: JSON.stringify(data),
       })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Success:', data);
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
+    } else {
+      alert('Must sign up or login');
+    }
   };
 
   const recipeArr = recipes.map(

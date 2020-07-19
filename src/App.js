@@ -66,7 +66,7 @@ function App(props) {
             <Login login={login} />
           </Route>
           <Route exact path="/recipe/:id">
-            <ViewRecipe />
+            <ViewRecipe token={token} />
           </Route>
         </Switch>
       </div>
