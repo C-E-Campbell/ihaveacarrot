@@ -5,6 +5,7 @@ require('../services/passport');
 const { saveRecipe, getRecipe } = require('../controllers/RecipesCTRL');
 
 const requireAuth = passport.authenticate('jwt', { session: false });
+
 recipesRouter.use('', requireAuth, (req, res, next) => {
   next();
 });
