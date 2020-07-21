@@ -10,6 +10,15 @@ const multerStorage = multer.diskStorage({
     cb(null, `user-${req.body.userId}-${Date.now()}.${ext}`);
   },
 });
+
+const multerFilter = (req, file, cb) => {
+  if (file.mimetype.startsWith('image')) {
+    cb(null, true);
+  } else {
+    cb(x, false);
+  }
+};
+
 module.exports = {
   saveProfileImage: (req, res, next) => {
     console.log(req.file);
