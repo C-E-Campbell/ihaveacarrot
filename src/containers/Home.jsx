@@ -107,6 +107,7 @@ export default function Home(props) {
             <h3 data-aos="fade-in" data-aos-once="true">
               How It Works:
             </h3>
+            <img src="http://localhost:8294/hello.jpeg" alt="test" />
             <h4
               className={styles.instructions}
               data-aos="fade-in"

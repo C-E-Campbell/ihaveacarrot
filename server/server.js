@@ -10,6 +10,7 @@ const { PORT, mongoURI } = process.env;
 app.use(express.static(`${__dirname}/../build`));
 app.use(morgan('tiny'));
 app.use(express.json());
+app.use(express.static(`${__dirname}/images`));
 
 // Mount Routers
 app.use('/iHAC/v1/auth', Auth);

@@ -1,18 +1,12 @@
 const multer = require('multer');
 
-const upload = multer({
-  storage: multerStorage,
-  fileFilter: multerStorage,
-});
-
-const multerStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'public/img/users');
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './images');
   },
-  filename: (req, file, cb) => {
-    // user-userId-timestamp.jpg
+  filename: function (req, file, cb) {
     const ext = file.mimetype.split('/')[1];
-    cb(null, `user-${req.body.userId}-${Date.now()}.${ext}`);
+    cb(null, `${file.fieldname}-${Date.now()}.${ext}`);
   },
 });
 
@@ -20,12 +14,13 @@ const multerFilter = (req, file, cb) => {
   if (file.mimetype.startsWith('image')) {
     cb(null, true);
   } else {
-    cb(new Error('Only Images'), false);
+    cb(null, false);
   }
 };
 
-module.exports = {
-  photoUpload: (req, res, next) => {
-    upload.single('photo');
-  },
-};
+const upload = multer({
+  storage,
+  fileFilter: multerFilter,
+});
+
+exports.photoUpload = upload.single('photo');
